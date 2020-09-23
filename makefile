@@ -1,7 +1,7 @@
 CFLAGS = -std=c99 -pedantic -Wall
 CC = gcc
 
-all: test_getbytes test_getbits test_bits2ull test_bits2ll test_spff bandb.h
+all: test_getbytes test_getbits test_bits2ull test_bits2ll test_spff test_dpff bandb.h
 
 bandb.o: bandb.c
 	$(CC) $(CFLAGS) -c bandb.c
@@ -36,5 +36,11 @@ test_spff.o: test_spff.c
 test_spff: bandb.o test_spff.o bandb.h
 		$(CC) $(CFLAGS) test_spff.o bandb.o -o test_spff
 
+test_dpff.o: test_dpff.c
+	$(CC) $(CFLAGS) -c test_dpff.c -o test_dpff.o
+
+test_dpff: bandb.o test_dpff.o bandb.h
+	$(CC) $(CFLAGS) test_dpff.o bandb.o -o test_dpff
+
 clean:
-	rm *.o test_getbytes test_getbits test_bits2ull test_bits2ll test_spff
+	rm *.o test_getbytes test_getbits test_bits2ull test_bits2ll test_spff test_dpff

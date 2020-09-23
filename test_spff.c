@@ -6,7 +6,7 @@ int main( int argc, char **argv )
   float x;
   char sign[2], exponent[9], significand[24];
 
-  //x = -127.1;
+  // x = -127.1;
   x = 0.15625;
 
   spff( sign, exponent, significand, &x );
