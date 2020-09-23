@@ -5,11 +5,6 @@
 void getbytes( unsigned char dest[], int bytes, void *src, int reverse) {
   int i;
   unsigned char* temp = src;
-  //int sizeDiff = sizeof(temp) - bytes;
-//  printf("sizeOf input : %lu\n", strlen(temp));
-  //printf("SizeDiff: %d\n", sizeDiff);
-
-  //printf("%lu", sizeof(temp));
 
   if (reverse == 0) {
     for (i = 0; i < bytes; i++) {
@@ -43,7 +38,7 @@ void getbits( char dest[], int bytes, void *src, int start, int end) {
   int destCount = 0;
   //printf("dest[]: %s\n", dest);
 
-  for (int k = startByte; k <= endByte; k++) {
+  for (int k = endByte; k >= startByte; k--) {
     //printf("iteration: %d\n", f++);
     if (k == startByte && k != endByte) {
       for (int i = startBit; i >=0; i --) {
@@ -146,17 +141,32 @@ unsigned long long bits2ull( char *bits) {
 
 void spff( char *sign, char *exponent, char *significand, float *src) {
 
-  unsigned char temp[32];
+  char temp[32];
 
-  getbits(temp[32], sizeof(float), src, 31, 0);
+  getbits(temp, sizeof(float), src, 31, -1);
 
+  sign[0] = temp[0];
+  sign[1] = '\0';
 
+  for (int i = 1; i < 9; i++) {
+    exponent[i-1]= temp[i];
+  }
+  exponent[8] = '\0';
 
+  for (int i = 9; i < 32; i++) {
+    significand[i - 9]= temp[i];
+  }
 
+  significand[23] = '\0';
 
+  printf("%s\n", temp);
 }
 
 void dpff(char *sign, char *exponent, char *significand, double *src) {
+
+
+
+
 
 
 }
