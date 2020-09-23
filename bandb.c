@@ -164,7 +164,22 @@ void spff( char *sign, char *exponent, char *significand, float *src) {
 
 void dpff(char *sign, char *exponent, char *significand, double *src) {
 
+  char temp[64];
 
+  getbits(temp, sizeof(double), src, 63, -1);
+
+  sign[0] = temp[0];
+  sign[1] = '\0';
+
+  for (int i = 1; i < 12; i++) {
+    exponent[i-1]= temp[i];
+  }
+  exponent[11] = '\0';
+
+  for (int i = 12; i < 64; i++) {
+    significand[i - 12]= temp[i];
+  }
+  significand[52] = '\0';
 
 
 
