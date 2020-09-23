@@ -3,7 +3,7 @@
 
 int main( int argc, char **argv )
 {
-  char *str1 = "abcdefghi";
+  char *str1 = "abcdefghijklasdsakjh";
   unsigned char dest[9] = "01234567";
 
   printf( "\"%s\"\n", dest );
